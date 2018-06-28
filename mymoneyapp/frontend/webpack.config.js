@@ -12,8 +12,13 @@ module.exports = {
   resolve: {
     // modules: ['node_modules'],
     alias: {
+      modules: path.resolve(__dirname, 'node_modules'),
       root: path.resolve(__dirname),
-      components: path.resolve(__dirname, 'components')
+      common: 'root/common/',
+      components: path.resolve(__dirname, 'components'),
+      jquery: 'modules/admin-lte/plugins/jQuery/jquery-2.2.3.min',
+      bootstrap:
+        'modules/admin-lte/dist/js/plugins/bootstrap/js/bootstrap.bundle.min.js'
     },
     extensions: ['*', '.js', '.jsx']
   },
@@ -21,7 +26,14 @@ module.exports = {
     port: 8080,
     contentBase: path.resolve(__dirname, './public')
   },
-  plugins: [new ExtractTextPlugin('app.css')],
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }),
+    new ExtractTextPlugin('app.css')
+  ],
   module: {
     rules: [
       {
@@ -38,7 +50,7 @@ module.exports = {
         }
       },
       {
-        test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
+        test: /\.woff|.woff2|.ttf|.eot|.png|.svg|.jpg*.*$/,
         loader: 'file-loader'
       }
     ]
