@@ -1,0 +1,21 @@
+.btn{
+    margin-right: .2rem;
+}
+
+.marked-as-done{
+    text-decoration: line-through;
+    color: #555;
+}
+
+.item{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    
+}
+
+.flex1{
+    flex: 1;
+}
