@@ -58,6 +58,18 @@ class ItemList extends React.Component {
                                             readOnly={this.props.readOnly}
                                         />
                                     </td>
+                                    <If test={this.props.showStatus}>
+                                        <td>
+                                            <Field
+                                                name={`${
+                                                    this.props.field
+                                                }[${index}].status`}
+                                                component={InlienField}
+                                                placeholder="Status"
+                                                readOnly={this.props.readOnly}
+                                            />
+                                        </td>
+                                    </If>
                                     <td className="table-actions">
                                         <button
                                             type="button"

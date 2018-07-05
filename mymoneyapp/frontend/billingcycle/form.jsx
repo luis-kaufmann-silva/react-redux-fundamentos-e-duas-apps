@@ -4,10 +4,20 @@ import LabelField from 'root/components/labelfield';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { init } from 'root/billingcycle/actions';
-
 import ItemList from 'components/itemlist';
 import Row from 'common/layout/row';
+
+import Summary from 'root/billingcycle/summary';
+
 class BillingCycleForm extends React.Component {
+    calculateSummary() {
+        const sum = (t, v) => t + v;
+        return {
+            credit: this.props.credits.map(c => +c.value || 0).reduce(sum),
+            debit: this.props.debits.map(c => +c.value || 0).reduce(sum)
+        };
+    }
+
     render() {
         const { handleSubmit, readOnly, credits, debits } = this.props;
         return (
@@ -38,6 +48,8 @@ class BillingCycleForm extends React.Component {
                         placeholder="Informe o ano"
                     />
 
+                    <Summary {...this.calculateSummary()} />
+
                     <Row>
                         <ItemList
                             cols="12 6"
@@ -48,6 +60,7 @@ class BillingCycleForm extends React.Component {
                         />
                         <ItemList
                             cols="12 6"
+                            showStatus={true}
                             readOnly={readOnly}
                             list={debits}
                             field="debits"
