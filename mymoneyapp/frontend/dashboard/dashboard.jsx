@@ -21,6 +21,7 @@ class Dashboard extends React.Component {
               icon="bank"
               value="R$ 10"
             />
+
             <ValueBox
               cols={'12 12 4'}
               text="Total de Débitos"
