@@ -1,16 +1,19 @@
 body {
-  /* background-color: blue; */
+    /* background-color: blue; */
 }
 
 .main-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 .btn {
-  margin-left: 0.2rem;
+    margin-left: 0.2rem;
 }
 
 .table-actions {
-  width: 10rem;
+    width: 10rem;
+}
+.fa {
+    margin-right: 0.2rem;
 }
