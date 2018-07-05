@@ -24,6 +24,7 @@ module.exports = {
   },
   devServer: {
     port: 8080,
+    historyApiFallback: true,
     contentBase: path.resolve(__dirname, './public')
   },
   plugins: [

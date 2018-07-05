@@ -10,6 +10,8 @@ import Footer from 'common/footer';
 import Routes from 'root/routes';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import Message from 'common/message';
+
 export default props => (
   <Router>
     <div className="wrapper">
@@ -19,6 +21,7 @@ export default props => (
         <Routes />
       </div>
       <Footer />
+      <Message />
     </div>
   </Router>
 );

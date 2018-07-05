@@ -1,14 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { bindActionCreators } from 'redux';
+
 import ContentHeader from 'common/contentheader';
 import Content from 'common/content';
 
 import ValueBox from 'root/widget/valuebox';
 import Grid from 'common/layout/grid';
 import Row from 'common/layout/row';
+import { getSummary } from 'root/dashboard/actions';
+import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
+  componentWillMount() {
+    this.props.getSummary();
+  }
   render() {
+    const { credit, debit } = this.props.summary;
     return (
       <div>
         <ContentHeader title="Dashboard" small="v1.0" />
@@ -19,7 +28,7 @@ class Dashboard extends React.Component {
               text="Total de Créditos"
               color="green"
               icon="bank"
-              value="R$ 10"
+              value={`R$ ${credit}`}
             />
 
             <ValueBox
@@ -27,14 +36,14 @@ class Dashboard extends React.Component {
               text="Total de Débitos"
               color="red"
               icon="credit-card"
-              value="R$ 10"
+              value={`R$ ${debit}`}
             />
             <ValueBox
               cols={'12 12 4'}
               text="Total de Consolidado"
               color="blue"
               icon="money"
-              value="R$ 0"
+              value={`R$ ${credit - debit}`}
             />
           </Row>
         </Content>
@@ -43,4 +52,10 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({ summary: state.dashboard.summary });
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ getSummary }, dispatch);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);
