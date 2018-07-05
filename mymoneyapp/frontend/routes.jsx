@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Route, Swich, Redirect } from 'react-router-dom';
+import { Switch } from 'react-router';
+import { Route, Redirect } from 'react-router-dom';
 
-import Dashbaord from 'root/dashboard/dashboard';
-import BillingCycle from 'root/billing-cycle/billingcycle';
-console.log(Swich);
+import Dashboard from 'root/dashboard/dashboard';
+import BillingCycle from 'root/billingcycle/billingcycle';
+
 export default props => (
-  <BrowserRouter>
-    <div>
-      <Route path="/" component={Dashbaord} />
-      <Route path="/billing-cycle" component={BillingCycle} />
-    </div>
-  </BrowserRouter>
+  <Switch>
+    <Route exact path="/" component={Dashboard} />
+    <Route path="/billingcycle" component={BillingCycle} />
+    <Redirect from="*" to="/" />
+  </Switch>
 );
