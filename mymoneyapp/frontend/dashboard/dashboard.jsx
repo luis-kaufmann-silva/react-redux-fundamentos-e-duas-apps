@@ -13,49 +13,49 @@ import { getSummary } from 'root/dashboard/actions';
 import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
-  componentWillMount() {
-    this.props.getSummary();
-  }
-  render() {
-    const { credit, debit } = this.props.summary;
-    return (
-      <div>
-        <ContentHeader title="Dashboard" small="v1.0" />
-        <Content>
-          <Row>
-            <ValueBox
-              cols={'12 12 4'}
-              text="Total de Créditos"
-              color="green"
-              icon="bank"
-              value={`R$ ${credit}`}
-            />
+    componentWillMount() {
+        this.props.getSummary();
+    }
+    render() {
+        const { credit, debit } = this.props.summary || {};
+        return (
+            <div>
+                <ContentHeader title="Dashboard" small="v1.0" />
+                <Content>
+                    <Row>
+                        <ValueBox
+                            cols={'12 12 4'}
+                            text="Total de Créditos"
+                            color="green"
+                            icon="bank"
+                            value={`R$ ${credit}`}
+                        />
 
-            <ValueBox
-              cols={'12 12 4'}
-              text="Total de Débitos"
-              color="red"
-              icon="credit-card"
-              value={`R$ ${debit}`}
-            />
-            <ValueBox
-              cols={'12 12 4'}
-              text="Total de Consolidado"
-              color="blue"
-              icon="money"
-              value={`R$ ${credit - debit}`}
-            />
-          </Row>
-        </Content>
-      </div>
-    );
-  }
+                        <ValueBox
+                            cols={'12 12 4'}
+                            text="Total de Débitos"
+                            color="red"
+                            icon="credit-card"
+                            value={`R$ ${debit}`}
+                        />
+                        <ValueBox
+                            cols={'12 12 4'}
+                            text="Total de Consolidado"
+                            color="blue"
+                            icon="money"
+                            value={`R$ ${credit - debit}`}
+                        />
+                    </Row>
+                </Content>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => ({ summary: state.dashboard.summary });
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getSummary }, dispatch);
+    bindActionCreators({ getSummary }, dispatch);
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Dashboard);
