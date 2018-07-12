@@ -4,12 +4,13 @@ import { API_URL, OAPI_URL } from 'root/constants';
 
 function submit(values, url) {
     return dispatch => {
-        asios
+        axios
             .post(url, values)
             .then(resp => {
                 dispatch([{ type: 'USER_FETCHED', payload: resp.data }]);
             })
             .catch(e => {
+                console.log(e);
                 e.response.data.errors.forEach(error =>
                     toastr.error('Erro', error)
                 );
@@ -18,7 +19,7 @@ function submit(values, url) {
 }
 
 export function login(values) {
-    return submit(value, `${OAPI_URL}/login`);
+    return submit(values, `${OAPI_URL}/login`);
 }
 
 export function signup(values) {

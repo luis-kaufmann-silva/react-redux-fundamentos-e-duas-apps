@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login, signup } from 'root/auth/actions';
-import Row from 'common/layout/layout/row';
+import Row from 'common/layout/row';
 import Grid from 'common/layout/grid';
 import If from 'common/if';
 import Messages from 'common/message';
@@ -87,7 +87,7 @@ class AuthView extends Component {
         );
     }
 }
-Auth = reduxForm({ form: 'auth-form' })(AuthView);
+AuthView = reduxForm({ form: 'auth-form' })(AuthView);
 const mapDispatchToProps = dispatch =>
     bindActionCreators({ login, signup }, dispatch);
 export default connect(
